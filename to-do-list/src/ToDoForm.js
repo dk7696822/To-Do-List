@@ -9,10 +9,26 @@ import {
   TextField,
 } from "@mui/material";
 
-function ToDoForm() {
+function ToDoForm({ addTodo }) {
+  const [value, handleChange, reset] = useInputState("");
   return (
-    <Paper>
-      <TextField />
+    <Paper style={{ margin: "1rem 0", padding: "0 1rem" }}>
+      <form
+        action=""
+        onSubmit={(e) => {
+          e.preventDefault();
+          addTodo(value);
+          reset();
+        }}
+      >
+        <TextField
+          value={value}
+          onChange={handleChange}
+          margin="normal"
+          label="Add New Todo"
+          fullWidth
+        />
+      </form>
     </Paper>
   );
 }
